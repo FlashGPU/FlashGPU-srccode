@@ -1,0 +1,29 @@
+file /home/jie/workspace/GPU-SSD/flashGPU-src/SConstruct,line 52:
+	Configure(confdir = .sconf_temp)
+scons: Configure: Checking for c++11 conformance...
+scons: Configure: ".sconf_temp/conftest_0.cpp" is up to date.
+scons: Configure: The original builder output was:
+  |.sconf_temp/conftest_0.cpp <-
+  |  |
+  |  |    #include <vector>
+  |  |    #include <iostream>
+  |  |  
+  |  |    using namespace std;
+  |  |
+  |  |    int main(void)
+  |  |    {
+  |  |      vector<int> test_vector(5);
+  |  |      int sum = 0;
+  |  |      for (auto itr = test_vector.begin(); itr != test_vector.end(); ++itr) {
+  |  |        sum += (*itr);
+  |  |      }
+  |  |      cout << sum;
+  |  |    }
+  |  |    
+  |
+scons: Configure: ".sconf_temp/conftest_0.o" is up to date.
+scons: Configure: The original builder output was:
+  |g++ -o .sconf_temp/conftest_0.o -c -std=c++11 .sconf_temp/conftest_0.cpp
+  |
+scons: Configure: (cached) yes
+

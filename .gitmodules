@@ -1,0 +1,3 @@
+[submodule "src/simplessd"]
+	path = src/simplessd
+	url = https://github.com/FlashGPU/flasharray-src.git
