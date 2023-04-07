@@ -8,7 +8,7 @@
 
 import os
 import sys
-import ConfigParser
+import configparser
 
 
 ## Check c++11 support
@@ -17,7 +17,7 @@ def CheckCPP11():
     cpp11_test = '''
     #include <vector>
     #include <iostream>
-  
+
     using namespace std;
 
     int main(void)
@@ -45,7 +45,7 @@ def pre_compile_check():
   #env.Replace(CXX = "/opt/rh/devtoolset-4/root/usr/bin/g++")
   custom_vars = set(['AS', 'AR', 'CC', 'CXX', 'HOME', 'LD_LIBRARY_PATH', 'PATH', 'RANLIB'])
 
-  for key,val in os.environ.iteritems():
+  for key,val in os.environ.items():
     if key in custom_vars:
       env[key] = val
 
@@ -65,17 +65,17 @@ flags = {}
 
 
 ## Configuration from file
-Config = ConfigParser.ConfigParser()
+Config = configparser.ConfigParser()
 Config.read('macsim.config')
-flags['dram']  = Config.get('Library', 'dram', '0')
-flags['power'] = Config.get('Library', 'power', '0')
-flags['iris']  = Config.get('Library', 'iris', '0')
-flags['qsim']  = Config.get('Library', 'qsim', '0')
-flags['ramulator']  = Config.get('Library', 'ramulator', '0')
-flags['simplessd'] = Config.get('Library', 'simplessd', '1')
-flags['debug'] = Config.get('Build', 'debug', '0')
-flags['gprof'] = Config.get('Build', 'gprof', '0')
-flags['val']   = Config.get('Build_Extra', 'val', '0')
+flags['dram']  = Config.get('Library', 'dram', raw='0')
+flags['power'] = Config.get('Library', 'power', raw='0')
+flags['iris']  = Config.get('Library', 'iris', raw='0')
+flags['qsim']  = Config.get('Library', 'qsim', raw='0')
+flags['ramulator']  = Config.get('Library', 'ramulator', raw='0')
+flags['simplessd'] = Config.get('Library', 'simplessd', raw='1')
+flags['debug'] = Config.get('Build', 'debug', raw='0')
+flags['gprof'] = Config.get('Build', 'gprof', raw='0')
+flags['val']   = Config.get('Build_Extra', 'val', raw='0')
 
 
 ## Configuration from commandline
@@ -120,5 +120,3 @@ elif flags['gprof'] == '1':
 else:
   SConscript('SConscript', variant_dir='.opt_build', duplicate=0, exports='flags')
   Clean('.', '.opt_build')
-
-

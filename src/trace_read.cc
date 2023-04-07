@@ -548,9 +548,17 @@ trace_reader_wrapper_c::trace_reader_wrapper_c(macsim_c *simBase) {
   m_gpu_decoder = new gpu_decoder_c(simBase, m_dprint_output);
 }
 
-trace_reader_wrapper_c::trace_reader_wrapper_c() {
-  m_dprint_output->close();
-  delete m_dprint_output;
+// trace_reader_wrapper_c::trace_reader_wrapper_c() {
+//   m_dprint_output->close();
+//   delete m_dprint_output;
+// }
+
+trace_reader_wrapper_c::trace_reader_wrapper_c() : m_dprint_output(nullptr) {
+  //close any existing file stream and delete it
+  if (m_dprint_output != nullptr) {
+    m_dprint_output->close();
+    delete m_dprint_output;
+  }
 }
 
 trace_reader_wrapper_c::~trace_reader_wrapper_c() {
